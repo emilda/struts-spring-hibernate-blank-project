@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="user" namespace="/user" extends="merc.default">
+		
+		<default-interceptor-ref name="noneAuthStack"/>
+		
+		<!-- Add actions here -->
+		<action name="*">
+            <result>/web/user/{1}.ftl</result>
+        </action>
+        
+        <action name="userLogin" class="user.userAction" method="login">
+            <result name="input">/web/user/showLogin.ftl</result>
+            <result name="error">/web/user/showLogin.ftl</result>
+            <result name="success">/web/user/userHome.ftl</result>
+        </action>
+        
+        <action name="registerLdapUser" class="user.userAction" method="registerLdapUser">
+            <result name="input">/web/user/register.ftl</result>
+            <result name="error">/web/user/register.ftl</result>
+            <result name="success">/web/user/user_action_finished.ftl</result>
+        </action>
+	
+	</package>
+	
+	<package name="data" namespace="/data" extends="merc.default">
+		
+		<default-interceptor-ref name="authenStack"/>
+		
+		<!-- Add actions here -->
+		<action name="*">
+            <result>/web/data/{1}.ftl</result>
+        </action>
+	
+	</package>
+	
+</struts>
